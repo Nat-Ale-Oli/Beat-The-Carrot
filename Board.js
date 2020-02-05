@@ -1,5 +1,6 @@
-class Board
+class piece{
 
 constructor(colour,posx,posy){
     
+}
 }
