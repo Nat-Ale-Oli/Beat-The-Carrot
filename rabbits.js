@@ -7,7 +7,8 @@ class Rabbit {
       this.x = x;
       this.y = y;
      this.r = 10;
-     this. alive = true;
+     this.alive = true;
+     this.end = 5;
   
 
     }
@@ -15,11 +16,12 @@ class Rabbit {
 
   
     // Display the Rabbit
-    show(lose) {
-        if(this.alive == true&&lose == false){
+    show(lose,) {
+        if(this.alive == true&&lose == false && this.end > 0){
       fill(255, 100);
       stroke(255);
       ellipse(this.x, this.y, this.r * 2, this.r * 2);
+      this.end -= 1/60;
     }}
   
   
