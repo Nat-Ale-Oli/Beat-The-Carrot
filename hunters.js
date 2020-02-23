@@ -13,7 +13,7 @@ class Hunter {
         this.left = false;
         this.health = 10;
         this.timer = 0;
-
+        this.dif = 7;
     }
 
 
@@ -28,7 +28,7 @@ class Hunter {
         fill(255*(10/this.health),255*(this.health/10),0);
         rect(this.x, this.y - 25, this.health, 2);
 
-        this.health -= 1*(this.timer/(60*7)) / 60;
+        this.health -= 1*(this.timer/(60*this.dif)) / 60;
         this.timer++;
     }
 

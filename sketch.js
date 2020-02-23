@@ -35,7 +35,7 @@ rabbit.show(lose);
 if(score<0){
     text("you lose",width/2,height/2);
 }
-hunter.show(colour);
+hunter.show();
 hunter.move();
 hunter.healthUp(rabbit.x,rabbit.y,rabbit.end);
 
