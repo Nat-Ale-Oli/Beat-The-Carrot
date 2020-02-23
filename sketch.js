@@ -45,7 +45,7 @@ if(rabbit.end <= 0){
 } 
 
 }
-
+// dette er blot fibunacci
 function factorial(n) {
     let ny = 1;
     let gammell = 0;

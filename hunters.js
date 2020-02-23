@@ -19,13 +19,13 @@ class Hunter {
 
 
     // Display the Rabbit
-    show(colour) {
+    show() {
         this.x = mouseX;
         this.y = mouseY;
         fill(255, 100);
         stroke(255);
         rect(this.x, this.y, this.w * 2, this.w * 2);
-        fill(colour[0], colour[1], colour[2]);
+        fill(255*(10/this.health),255*(this.health/10),0);
         rect(this.x, this.y - 25, this.health, 2);
 
         this.health -= 1 / 60;
