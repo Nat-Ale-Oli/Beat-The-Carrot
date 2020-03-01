@@ -1,65 +1,92 @@
-const width = innerWidth-10;
+const population = 10;
+const width = 300;
+
 let lose = false;
-const height = innerHeight-20;
+
+const height = 300;
+
 let score = 1;
-var hunter;
-var colour = [0,255,0]
-var rabbit = new Rabbit(Math.floor(Math.random()*width),Math.floor(Math.random()*height));
+
+let hunters = [];
+let savedHunters = [];
+
+var colour = [0, 255, 0]
+
+var rabbit;
+
+
+
+let slider;
+
+
+
+
+
 function setup() {
+    for (i = 0; i <= population; i++) {
+        
+        hunters[i] = new Hunter();
+
+    }
+
+    rabbit = new Rabbit(Math.floor(Math.random() * width), Math.floor(Math.random() * height));
+
+    slider = createSlider(1, 100, 100);
+
+    createCanvas(width, height);
 
 
-   
-createCanvas(width , height);
 
-hunter = new Hunter();
 
 
 }
 
 
 function draw() {
-  
 
-    if(hunter.health < 0 ){
-        lose = true;
+
+    for (let n = 0; n < slider.value(); n++) {
+        for (let i = hunters.length - 1; i >= 0; i--) {
+            let hunter = hunters[i];
+
+            hunter.think(rabbit.x, rabbit.y);
+
+            hunter.update();
+
+
+            if (hunter.health < 0) {
+                savedHunters.push(hunters.splice(i, 1)[0]);
+            } else
+            if (hunter.x < 0||hunter.x > width ) {
+                savedHunters.push(hunters.splice(i, 1)[0]);
+            } else
+            if (hunter.y < 0||hunter.y > height ) {
+                savedHunters.push(hunters.splice(i, 1)[0]);
+            } 
+
+
+            if (hunters.length === 0) {
+                console.log("next gen please")
+                nextGeneration();
+            }
+
+        }
+        rabbit.update();
+        if (rabbit.end <= 0) {
+            for (let i = hunters.length - 1; i >= 0; i--) {
+                let hunter = hunters[i];
+                hunter.healthUp(rabbit.x, rabbit.y);
+            }
+            rabbit = new Rabbit(Math.floor(Math.random() * width), Math.floor(Math.random() * height));
+        }
     }
     background(51);
-    text(Math.floor(hunter.health),50,50);
-    fill(0,255*score,0);
-  //  rect(mouseX,mouseY-25,100*score,20);
 
-rabbit.show(lose);
-
-
-
-if(score<0){
-    text("you lose",width/2,height/2);
-}
-hunter.show();
-hunter.move();
-hunter.healthUp(rabbit.x,rabbit.y,rabbit.end);
-
-if(rabbit.end <= 0){
-    hunter.health += 10/dist(rabbit.x,rabbit.y,hunter.x,hunter.y);
-    rabbit = new Rabbit(Math.floor(Math.random()*width),Math.floor(Math.random()*height));
-} 
-
-}
-// dette er blot fibunacci
-function factorial(n) {
-    let ny = 1;
-    let gammell = 0;
-    let gammel2 = 0;
-    console.log(ny);
-
-    for (let i = n; i > 1; i--) {
-        
-        gammel2 = gammell;
-        gammell = ny
-       
-        ny = gammell + gammel2
-       
-       console.log(ny);
+    for (let hunter of hunters) {
+        hunter.show();
     }
-    
+
+
+
+    rabbit.show();
 }

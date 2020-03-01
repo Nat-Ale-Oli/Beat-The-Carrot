@@ -16,12 +16,12 @@ class Rabbit {
 
   
     // Display the Rabbit
-    show(lose,) {
-        if(this.alive == true&&lose == false && this.end > 0){
+    show() {
+        if(this.alive == true&& this.end > 0){
       fill(255, 100);
       stroke(255);
       ellipse(this.x, this.y, this.r * 2, this.r * 2);
-      this.end -= 1/60;
+      
     }}
   
   
@@ -36,5 +36,8 @@ class Rabbit {
             return false
 
         }
+    }
+    update(){
+        this.end -= 1/60;
     }
 }
