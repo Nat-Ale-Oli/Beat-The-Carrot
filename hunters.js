@@ -29,11 +29,12 @@ class Hunter {
 
 
 
-    // Display the Rabbit
+    /* Displays the square, on wich the Image og the rabbit is displayed.
+    The square is black to make it invisible on the background*/
     show() {
 
-        fill(255, 100);
-        stroke(255);
+        fill(0, 0, 0);
+        noStroke;
         rect(this.x, this.y, this.w * 2, this.w * 2);
         fill(255 * (10 / this.health), 255 * (this.health / 10), 0);
         rect(this.x, this.y - 25, this.health, 2);

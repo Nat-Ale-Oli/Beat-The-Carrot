@@ -9,18 +9,15 @@ class Rabbit {
      this.r = 10;
      this.alive = true;
      this.end = 5;
-  
-
     }
   
-
-  
-    // Display the Rabbit
+    // Displays the ellipse, on with the image of the carrot is placed.
     show() {
         if(this.alive == true&& this.end > 0){
-      fill(255, 100);
-      stroke(255);
+      fill(0, 0, 0);
+      noStroke();
       ellipse(this.x, this.y, this.r * 2, this.r * 2);
+
       
     }}
   

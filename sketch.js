@@ -14,15 +14,17 @@ var colour = [0, 255, 0]
 
 var rabbit;
 
-
-
 let slider;
-
+let rabbitImage;
 
 
 
 
 function setup() {
+    //We load the image og the carrot(rabbitIamge) and the rabbit(hunterImage).
+    rabbitImage =   loadImage('Sprites/Sprite1.png');
+    hunterImage = loadImage('Sprites/Sprite6.png');
+    
     for (i = 0; i <= population; i++) {
         
         hunters[i] = new Hunter();
@@ -80,13 +82,17 @@ function draw() {
             rabbit = new Rabbit(Math.floor(Math.random() * width), Math.floor(Math.random() * height));
         }
     }
-    background(51);
-
+    background(0);
+    //The image og the carrot is placed on top of the ellipse.
+    rabbit.show();
+    image(rabbitImage, rabbit.x-25, rabbit.y-25, 50, 50);
     for (let hunter of hunters) {
+        
+        //The image og the rabbit is placed on top of the square.
         hunter.show();
+        image(hunterImage, hunter.x-35, hunter.y-35, 70, 70);
     }
 
 
-
-    rabbit.show();
+   
 }
